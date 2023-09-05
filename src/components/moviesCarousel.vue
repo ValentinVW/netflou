@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 let currentSlide = ref(0);
