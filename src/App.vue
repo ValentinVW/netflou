@@ -3,8 +3,8 @@ import movies from "./components/movies.vue";
 import search from "./components/searchBar.vue";
 import series from "./components/series.vue";
 import about from "./components/about.vue";
-import serieCarousel from "./components/serieCarousel.vue";
-import movieCarousel from "./components/movieCarousel.vue";
+import seriesCarousel from "./components/seriesCarousel.vue";
+import moviesCarousel from "./components/moviesCarousel.vue";
 </script>
 <template>
   <div class="fixed w-full h-screen bg-black">
@@ -27,8 +27,8 @@ import movieCarousel from "./components/movieCarousel.vue";
       <div
         class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
       >
-        <movieCarousel class="pb-14 pt-14" />
-        <serieCarousel class="pb-14" />
+        <moviesCarousel class="pb-14 pt-14" />
+        <seriesCarousel class="pb-14" />
       </div>
     </div>
   </div>
