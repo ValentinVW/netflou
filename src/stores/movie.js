@@ -18,6 +18,6 @@ export const useMovieStore = defineStore("movie", {
     },
   },
   getters: {
-    getSerie: (state) => state.movie,
+    getMovie: (state) => state.movie,
   },
 });
