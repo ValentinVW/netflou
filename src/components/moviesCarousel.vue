@@ -1,19 +1,31 @@
 <script setup>
+import { ref, toRefs } from "vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 
+import { useMovieStore } from "../stores/movie";
+import { storeToRefs } from "pinia";
+const useMovie = useMovieStore();
+const { movie, showFullVideoMovie } = storeToRefs(useMovie);
+
 let currentSlide = ref(0);
+
+const props = defineProps({ movies: Array });
+const { movies } = toRefs(props);
+
+const currentSlideObject = (slide, index) => {
+  if (index === currentSlide.value) {
+    movie.value = slide;
+  }
+};
+
+const fullScreenVideoMovie = (index) => {
+  currentSlide.value = index;
+  setTimeout(() => (showFullVideoMovie.value = true), 500);
+};
 </script>
 
 <template>
   <div class="min-w-[1200px] relative">
-    <div class="flex justify-between mr-6">
-      <div
-        class="flex items-center font-semibold text-white text-2xl cursor-pointer"
-      >
-        {{ category }}
-      </div>
-    </div>
-
     <Carousel
       ref="carousel"
       v-model="currentSlide"
@@ -30,7 +42,7 @@ let currentSlide = ref(0);
         class="flex items-center object-cover text-white bg-transparent"
       >
         <div
-          @click="fullScreenVideo(index)"
+          @click="fullScreenVideoMovie(index)"
           class="object-cover h-[100%] hover:brightness-125 cursor-pointer"
           :class="
             (currentSlide !== index
@@ -38,9 +50,7 @@ let currentSlide = ref(0);
               : 'border-4 border-white',
             currentSlideObject(slide, index))
           "
-        >
-          <img />
-        </div>
+        ></div>
       </Slide>
       <template #addons>
         <Navigation />

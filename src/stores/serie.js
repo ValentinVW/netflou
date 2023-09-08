@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 
-export const useMovieStore = defineStore("serie", {
+export const useSerieStore = defineStore("serie", {
   state: () => ({
     serie: [],
-    showFullVideo: false,
+    showFullVideoSerie: false,
   }),
   actions: {
     async fetchSerie() {
