@@ -27,7 +27,6 @@ onMounted(() => {
 <template>
   <div class="fixed w-full h-screen bg-black">
     <div
-      v-if="!showFullVideoMovie && showFullVideoSerie"
       id="SideNav"
       class="flex z-40 items-center w-[120px] h-screen bg-black relative"
     >
@@ -41,30 +40,18 @@ onMounted(() => {
         </div>
       </nav>
     </div>
-    <div v-if="!showFullVideoMovie && !showFullVideoSerie">
+    <div>
       <div
         class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
       >
         <div
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
-          <moviesCarousel
-            class="pb-14 pt-14"
-            category="Popular Movies"
-            :movies="movies"
-          />
-          <seriesCarousel
-            class="pb-14"
-            category="Horror Movies"
-            :series="series"
-          />
+          <moviesCarousel class="pb-14 pt-14" :movies="movies" />
+          <seriesCarousel class="pb-14" :series="series" />
         </div>
       </div>
     </div>
-
-    <div
-      class="absolute z-20 h-[70%] left-[120px] w-[100%] right-0 bottom-0 bg-gradient-to-t from-black via-black"
-    />
   </div>
 </template>
 

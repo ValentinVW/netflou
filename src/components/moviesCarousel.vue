@@ -9,7 +9,7 @@ const { movie, showFullVideoMovie } = storeToRefs(useMovie);
 
 let currentSlide = ref(0);
 
-const props = defineProps({ movies: Array });
+const props = defineProps({ movies: Object });
 const { movies } = toRefs(props);
 
 const currentSlideObject = (slide, index) => {
