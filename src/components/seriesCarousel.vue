@@ -50,7 +50,14 @@ const fullScreenVideoSerie = (index) => {
               : 'border-4 border-white',
             currentSlideObject(slide, index))
           "
-        ></div>
+        >
+          <img
+            style="user-select: none"
+            class="pointer-events-none h-[100%] z-[-1]"
+            :src="{ series } + slide.name + '.png'"
+            alt="image"
+          />
+        </div>
       </Slide>
       <template #addons>
         <Navigation />

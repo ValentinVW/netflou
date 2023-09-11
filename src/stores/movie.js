@@ -13,13 +13,17 @@ export const useMovieStore = defineStore("movie", {
     async fetchMovie() {
       try {
         const request = await axios.get(
-          "https://moviesminidatabase.p.rapidapi.com/movie/order/byPopularity/",
+          "https://api.betaseries.com/movies/movie"
+          /**,
           {
-            headers: {
+            
+            * headers: {
               "X-RapidAPI-Key": API_KEY,
               "X-RapidAPI-Host": "moviesminidatabase.p.rapidapi.com",
-            },
+            }, 
+            
           }
+          */
         );
         const data = await request.json();
         this.movie = data;
