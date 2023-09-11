@@ -12,7 +12,7 @@ export const useMovieStore = defineStore("movie", {
   actions: {
     async fetchMovie() {
       try {
-        const res = await axios.get(
+        const request = await axios.get(
           "https://moviesminidatabase.p.rapidapi.com/movie/order/byPopularity/",
           {
             headers: {
@@ -21,7 +21,7 @@ export const useMovieStore = defineStore("movie", {
             },
           }
         );
-        const data = await res.json();
+        const data = await request.json();
         this.movie = data;
         console.log(data);
         return data;
