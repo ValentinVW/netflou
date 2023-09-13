@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { API_KEY } from "../../key.js";
+import { API_KEY_TMDB } from "../../key.js";
 
 export const useMovieStore = defineStore("movie", {
   state: () => ({
@@ -13,19 +13,14 @@ export const useMovieStore = defineStore("movie", {
     async fetchMovie() {
       try {
         const request = await axios.get(
-          "https://api.betaseries.com/movies/movie"
-          /**,
+          `https://api.themoviedb.org/3/movie/11?api_key=${API_KEY_TMDB}`,
           {
-            
-            * headers: {
-              "X-RapidAPI-Key": API_KEY,
-              "X-RapidAPI-Host": "moviesminidatabase.p.rapidapi.com",
-            }, 
-            
+            Headers: {
+              accept: "application/json",
+            },
           }
-          */
         );
-        const data = await request.json();
+        const data = await request;
         this.movie = data;
         console.log(data);
         return data;

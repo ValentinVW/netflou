@@ -9,7 +9,7 @@ const { movie, showFullVideoMovie } = storeToRefs(useMovie);
 
 let currentSlide = ref(0);
 
-const props = defineProps({ movies: Object });
+const props = defineProps({ movies: "" });
 const { movies } = toRefs(props);
 
 const currentSlideObject = (slide, index) => {
@@ -42,7 +42,6 @@ const fullScreenVideoMovie = (index) => {
         class="flex items-center object-cover text-white bg-transparent"
       >
         <div
-          @click="fullScreenVideoMovie(index)"
           class="object-cover h-[100%] hover:brightness-125 cursor-pointer"
           :class="
             (currentSlide !== index
@@ -50,7 +49,14 @@ const fullScreenVideoMovie = (index) => {
               : 'border-4 border-white',
             currentSlideObject(slide, index))
           "
-        ></div>
+        >
+          <img
+            style="user-select: none"
+            class="pointer-events-none h-[100%] z-[-1]"
+            :src="{ movies } + slide.poster_path"
+            alt="image-movie"
+          />
+        </div>
       </Slide>
       <template #addons>
         <Navigation />

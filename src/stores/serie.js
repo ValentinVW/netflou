@@ -21,7 +21,7 @@ export const useSerieStore = defineStore("serie", {
             },
           }
         );
-        const data = await res.json();
+        const data = await res;
         this.serie = data;
         console.log(data);
         return data;
