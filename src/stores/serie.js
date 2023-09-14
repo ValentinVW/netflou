@@ -4,7 +4,7 @@ import { API_KEY } from "../../key.js";
 export const useSerieStore = defineStore("serie", {
   state: () => ({
     serie: [],
-    showFullVideoSerie: false,
+    showFullVideo: false,
   }),
   getters: {
     getSerie: (state) => state.serie,
