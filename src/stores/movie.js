@@ -2,12 +2,17 @@ import { defineStore } from "pinia";
 import { API_KEY_TMDB } from "../../key.js";
 
 export const useMovieStore = defineStore("movie", {
-  state: () => ({}),
-  getters: {},
+  state: () => ({
+    movie: [],
+    showFullVideo: false,
+  }),
+  getters: {
+    getMovie: (state) => state.movie,
+  },
   actions: {
     async fetchMovie() {
       try {
-        const request = await axios.get({
+        const request = await axios.get("http://localhost:3000/movie", {
           Headers: {},
         });
         const data = await request;
