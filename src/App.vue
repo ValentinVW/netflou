@@ -47,7 +47,10 @@ onMounted(() => {
         <div
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
-          <moviesCarousel class="pb-14 pt-14" :movies="movies" />
+          <moviesCarousel
+            class="pb-14 pt-14"
+            :movies="movies[(0, 1, 3, 4, 5, 6)]"
+          />
           <seriesCarousel class="pb-14" :series="series" />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { API_KEY } from "../../key.js";
+import axios from "axios";
 
 export const useSerieStore = defineStore("serie", {
   state: () => ({

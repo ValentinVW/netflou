@@ -9,7 +9,7 @@ const { movie, showFullVideoMovie } = storeToRefs(useMovie);
 
 let currentSlide = ref(0);
 
-const props = defineProps({ movies: "" });
+const props = defineProps({ movies: Array });
 const { movies } = toRefs(props);
 
 const currentSlideObject = (slide, index) => {
@@ -53,7 +53,7 @@ const fullScreenVideoMovie = (index) => {
           <img
             style="user-select: none"
             class="pointer-events-none h-[100%] z-[-1]"
-            :src="{ movies } + slide.poster_path"
+            :src="{ movies } + slide.Images"
             alt="image-movie"
           />
         </div>

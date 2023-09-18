@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
-import { API_KEY_TMDB } from "../../key.js";
+
+import axios from "axios";
 
 export const useMovieStore = defineStore("movie", {
   state: () => ({
-    movie: [],
+    movie: null,
     showFullVideo: false,
   }),
   getters: {
@@ -12,15 +13,13 @@ export const useMovieStore = defineStore("movie", {
   actions: {
     async fetchMovie() {
       try {
-        const request = await axios.get("http://localhost:3000/movie", {
-          Headers: {},
-        });
-        const data = await request;
+        const request = await axios.get("http://localhost:3000/movie");
+        const data = request;
         this.movie = data;
         console.log(data);
         return data;
       } catch (error) {
-        // en cas d’échec de la requête
+        alert(error);
         console.log(error);
       }
     },
