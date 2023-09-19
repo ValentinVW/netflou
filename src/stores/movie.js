@@ -6,6 +6,7 @@ export const useMovieStore = defineStore("movie", {
   state: () => ({
     movie: null,
     showFullVideo: false,
+    mots: "exemple de phrase",
   }),
   getters: {
     getMovie: (state) => state.movie,

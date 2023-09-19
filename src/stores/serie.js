@@ -5,6 +5,7 @@ export const useSerieStore = defineStore("serie", {
   state: () => ({
     serie: [],
     showFullVideo: false,
+    desc: "mot pour mot",
   }),
   getters: {
     getSerie: (state) => state.serie,
