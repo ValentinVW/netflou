@@ -20,8 +20,6 @@ const useSerie = useSerieStore();
       class="flex z-40 items-center w-[120px] h-screen bg-black relative"
     >
       <h1 class="absolute top-0 text-8xl mt-10 ml-10">Netflou</h1>
-      <p>{{ useMovie.desc }}</p>
-
       <nav>
         <div>
           <search />
