@@ -1,4 +1,6 @@
 <script setup>
+import { ref, onMounted, computed } from "vue";
+
 import moviesIcon from "./components/moviesIcon.vue";
 import search from "./components/searchBar.vue";
 import seriesIcon from "./components/seriesIcon.vue";
@@ -9,8 +11,33 @@ import moviesCarousel from "./components/moviesCarousel.vue";
 import { useMovieStore } from "./stores/movie";
 import { useSerieStore } from "./stores/serie";
 
-const useMovie = useMovieStore();
-const useSerie = useSerieStore();
+// ---- MOVIE ----//
+
+const storeMovie = useMovieStore();
+
+const getMovie = computed(() => {
+  return storeMovie.getMovie;
+});
+const movie = computed(() => {
+  return storeMovie.movie;
+});
+onMounted(() => {
+  storeMovie.fetchMovie();
+});
+
+// ---- SERIE ----//
+
+const storeSerie = useSerieStore();
+
+const getSerie = computed(() => {
+  return storeSerie.getSerie;
+});
+const serie = computed(() => {
+  return storeSerie.serie;
+});
+onMounted(() => {
+  storeSerie.fetchSerie();
+});
 </script>
 
 <template>
@@ -36,8 +63,8 @@ const useSerie = useSerieStore();
         <div
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
-          <moviesCarousel class="pb-14 pt-14" :useMovie="movies" />
-          <seriesCarousel class="pb-14" :useSerie="series" />
+          <moviesCarousel class="pb-14 pt-14" :getMovie="movie" />
+          <seriesCarousel class="pb-14" :getSerie="serie" />
         </div>
       </div>
     </div>

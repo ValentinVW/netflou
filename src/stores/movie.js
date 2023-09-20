@@ -4,7 +4,8 @@ import axios from "axios";
 
 export const useMovieStore = defineStore("movie", {
   state: () => ({
-    movie: null,
+    movie: {},
+    desc: "description",
     showFullVideo: false,
   }),
   getters: {
@@ -16,10 +17,9 @@ export const useMovieStore = defineStore("movie", {
         const request = await axios.get("http://localhost:3000/movie");
         const data = request;
         this.movie = data;
-        console.log(data);
+
         return data;
       } catch (error) {
-        alert(error);
         console.log(error);
       }
     },

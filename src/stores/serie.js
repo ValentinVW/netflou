@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
+import { keyRapidAPI } from "../../key.js";
+
 export const useSerieStore = defineStore("serie", {
   state: () => ({
     serie: [],
@@ -16,7 +18,7 @@ export const useSerieStore = defineStore("serie", {
           "https://moviesminidatabase.p.rapidapi.com/series/order/byPopularity/",
           {
             headers: {
-              "X-RapidAPI-Key": API_KEY,
+              "X-RapidAPI-Key": keyRapidAPI,
               "X-RapidAPI-Host": "moviesminidatabase.p.rapidapi.com",
             },
           }
