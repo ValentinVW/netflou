@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-import { keyRapidAPI } from "../../key.js";
+import { keyOMDbAPI } from "../../key.js";
 
 export const useSerieStore = defineStore("serie", {
   state: () => ({
@@ -15,13 +15,7 @@ export const useSerieStore = defineStore("serie", {
     async fetchSerie() {
       try {
         const res = await axios.get(
-          "https://moviesminidatabase.p.rapidapi.com/series/order/byPopularity/",
-          {
-            headers: {
-              "X-RapidAPI-Key": keyRapidAPI,
-              "X-RapidAPI-Host": "moviesminidatabase.p.rapidapi.com",
-            },
-          }
+          `https://www.omdbapi.com/?i=tt3896198&apikey=${keyOMDbAPI}`
         );
         const data = await res;
         this.serie = data;
