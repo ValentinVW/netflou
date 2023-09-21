@@ -5,7 +5,6 @@ import axios from "axios";
 export const useMovieStore = defineStore("movie", {
   state: () => ({
     movie: [],
-    desc: "description",
     showFullVideo: false,
   }),
   getters: {
@@ -14,12 +13,13 @@ export const useMovieStore = defineStore("movie", {
   actions: {
     async fetchMovie() {
       try {
-        const request = await axios.get("http://localhost:3000/movie");
-        const data = request;
+        const res = await axios.get();
+        const data = await res;
         this.movie = data;
-
+        console.log(data);
         return data;
       } catch (error) {
+        // en cas d’échec de la requête
         console.log(error);
       }
     },

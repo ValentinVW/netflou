@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-import { keyOMDbAPI } from "../../key.js";
+import { URL_OMD_API } from "../../key.js";
 
 export const useSerieStore = defineStore("serie", {
   state: () => ({
@@ -12,19 +12,6 @@ export const useSerieStore = defineStore("serie", {
     getSerie: (state) => state.serie,
   },
   actions: {
-    async fetchSerie() {
-      try {
-        const res = await axios.get(
-          `https://www.omdbapi.com/?i=tt3896198&apikey=${keyOMDbAPI}`
-        );
-        const data = await res;
-        this.serie = data;
-        console.log(data);
-        return data;
-      } catch (error) {
-        // en cas d’échec de la requête
-        console.log(error);
-      }
-    },
+    async fetchSerie() {},
   },
 });

@@ -54,7 +54,7 @@ const fullScreenVideoSerie = (index) => {
           <img
             style="user-select: none"
             class="pointer-events-none h-[100%] z-[-1]"
-            :src="{ series } + slide.Poster"
+            :src="{ series } + slide.data.Poster"
             alt="image"
           />
         </div>
