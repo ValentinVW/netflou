@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import moviesIcon from "./components/moviesIcon.vue";
 import search from "./components/searchBar.vue";
@@ -15,9 +16,6 @@ import { useSerieStore } from "./stores/serie";
 
 const storeMovie = useMovieStore();
 
-const getMovie = computed(() => {
-  return storeMovie.getMovie;
-});
 const movie = computed(() => {
   return storeMovie.movie;
 });
@@ -29,15 +27,14 @@ onMounted(() => {
 
 const storeSerie = useSerieStore();
 
-const getSerie = computed(() => {
-  return storeSerie.getSerie;
-});
 const serie = computed(() => {
   return storeSerie.serie;
 });
 onMounted(() => {
   storeSerie.fetchSerie();
 });
+
+const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
 </script>
 
 <template>
@@ -46,24 +43,30 @@ onMounted(() => {
       id="SideNav"
       class="flex z-40 items-center w-[120px] h-screen bg-black relative"
     >
-      <h1 class="absolute top-0 text-8xl mt-10 ml-10">Netflou</h1>
-      <nav>
-        <div>
-          <search />
-          <moviesIcon />
-          <seriesIcon />
-          <about />
-        </div>
-      </nav>
+      <div
+        v-if="!showFullVideo"
+        id="SideNav"
+        class="flex z-40 items-center w-[120px] h-screen bg-black relative"
+      >
+        <h1 class="absolute top-0 text-8xl mt-10 ml-10">Netflou</h1>
+        <nav>
+          <div>
+            <search />
+            <moviesIcon />
+            <seriesIcon />
+            <about />
+          </div>
+        </nav>
+      </div>
     </div>
-    <div>
+    <div v-if="!showFullVideo">
       <div
         class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
       >
         <div
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
-          <moviesCarousel class="pb-14 pt-14" :getMovie="movie" />
+          <moviesCarousel class="pb-14 pt-14" :getmovie="movie.data" />
           <seriesCarousel class="pb-14" :getSerie="serie" />
         </div>
       </div>

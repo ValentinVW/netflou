@@ -1,16 +1,19 @@
 <script setup>
-import { ref, toRefs } from "vue";
+import { ref, toRefs, onMounted, computed } from "vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 import { useMovieStore } from "../stores/movie";
 import { storeToRefs } from "pinia";
-const useMovie = useMovieStore();
-const { movie, showFullVideoMovie } = storeToRefs(useMovie);
+
+const storeMovie = useMovieStore();
+
+const { showFullVideo } = storeToRefs(storeMovie);
+
+const props = defineProps({ movie: Array });
+
+const { movie } = toRefs(props);
 
 let currentSlide = ref(0);
-
-const props = defineProps({ movies: Array });
-const { movies } = toRefs(props);
 
 const currentSlideObject = (slide, index) => {
   if (index === currentSlide.value) {
@@ -18,9 +21,9 @@ const currentSlideObject = (slide, index) => {
   }
 };
 
-const fullScreenVideoMovie = (index) => {
+const fullScreenVideo = (index) => {
   currentSlide.value = index;
-  setTimeout(() => (showFullVideoMovie.value = true), 500);
+  setTimeout(() => (showFullVideo.value = true), 500);
 };
 </script>
 
@@ -37,11 +40,12 @@ const fullScreenVideoMovie = (index) => {
       class="bg-transparent"
     >
       <Slide
-        v-for="(slide, index) in movies"
+        v-for="(slide, index) in movie"
         :key="slide"
         class="flex items-center object-cover text-white bg-transparent"
       >
         <div
+          @click="fullScreenVideo(index)"
           class="object-cover h-[100%] hover:brightness-125 cursor-pointer"
           :class="
             (currentSlide !== index
@@ -53,7 +57,7 @@ const fullScreenVideoMovie = (index) => {
           <img
             style="user-select: none"
             class="pointer-events-none h-[100%] z-[-1]"
-            :src="{ movies } + slide.Images"
+            :src="{ movie } + slide.data.Poster"
             alt="image-movie"
           />
         </div>
