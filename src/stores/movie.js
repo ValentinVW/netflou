@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const useMovieStore = defineStore("movie", {
   state: () => ({
-    movie: [],
+    movie: null,
     showFullVideo: false,
   }),
   getters: {

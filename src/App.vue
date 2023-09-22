@@ -66,8 +66,8 @@ const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
         <div
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
-          <moviesCarousel class="pb-14 pt-14" :getmovie="movie.data" />
-          <seriesCarousel class="pb-14" :getSerie="serie" />
+          <moviesCarousel class="pb-14 pt-14" v-bind:movie="movie" />
+          <seriesCarousel class="pb-14" v-bind:serie="serie" />
         </div>
       </div>
     </div>

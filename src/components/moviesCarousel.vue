@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRefs, onMounted, computed } from "vue";
+import { ref, toRefs } from "vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 import { useMovieStore } from "../stores/movie";
@@ -7,9 +7,9 @@ import { storeToRefs } from "pinia";
 
 const storeMovie = useMovieStore();
 
-const { showFullVideo } = storeToRefs(storeMovie);
+const props = defineProps({ storeMovie: Array });
 
-const props = defineProps({ movie: Array });
+const { showFullVideo } = storeToRefs(storeMovie);
 
 const { movie } = toRefs(props);
 
@@ -28,6 +28,7 @@ const fullScreenVideo = (index) => {
 </script>
 
 <template>
+  <h1 color="blue">{{ movie.Title }}</h1>
   <div class="min-w-[1200px] relative">
     <Carousel
       ref="carousel"
