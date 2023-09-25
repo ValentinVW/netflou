@@ -14,7 +14,7 @@ export const useMovieStore = defineStore("movie", {
     async fetchMovie() {
       try {
         const res = await axios.get();
-        const data = await res;
+        const data = res;
         this.movie = data;
         console.log(data);
         return data;

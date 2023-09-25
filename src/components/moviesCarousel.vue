@@ -6,18 +6,17 @@ import { useMovieStore } from "../stores/movie";
 import { storeToRefs } from "pinia";
 
 const storeMovie = useMovieStore();
+const { movie, showFullVideo } = storeToRefs(storeMovie);
 
-const props = defineProps({ storeMovie: Array });
+const props = defineProps({ movie: Object });
 
-const { showFullVideo } = storeToRefs(storeMovie);
-
-const { movie } = toRefs(props);
+const { movies } = toRefs(props);
 
 let currentSlide = ref(0);
 
 const currentSlideObject = (slide, index) => {
   if (index === currentSlide.value) {
-    movie.value = slide;
+    movies.value = slide;
   }
 };
 
@@ -28,7 +27,6 @@ const fullScreenVideo = (index) => {
 </script>
 
 <template>
-  <h1 color="blue">{{ movie.Title }}</h1>
   <div class="min-w-[1200px] relative">
     <Carousel
       ref="carousel"
@@ -41,7 +39,7 @@ const fullScreenVideo = (index) => {
       class="bg-transparent"
     >
       <Slide
-        v-for="(slide, index) in movie"
+        v-for="(slide, index) in movies"
         :key="slide"
         class="flex items-center object-cover text-white bg-transparent"
       >
@@ -58,7 +56,7 @@ const fullScreenVideo = (index) => {
           <img
             style="user-select: none"
             class="pointer-events-none h-[100%] z-[-1]"
-            :src="{ movie } + slide.data.Poster"
+            :src="{ movies } + slide.data.Poster"
             alt="image-movie"
           />
         </div>

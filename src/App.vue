@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import moviesIcon from "./components/moviesIcon.vue";
@@ -19,7 +19,8 @@ const storeMovie = useMovieStore();
 const movie = computed(() => {
   return storeMovie.movie;
 });
-onMounted(() => {
+
+onBeforeMount(() => {
   storeMovie.fetchMovie();
 });
 
@@ -30,9 +31,12 @@ const storeSerie = useSerieStore();
 const serie = computed(() => {
   return storeSerie.serie;
 });
-onMounted(() => {
+
+onBeforeMount(() => {
   storeSerie.fetchSerie();
 });
+
+// *********** //
 
 const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
 </script>
