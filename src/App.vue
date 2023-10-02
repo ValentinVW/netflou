@@ -24,18 +24,6 @@ onBeforeMount(() => {
   storeMovie.fetchMovie();
 });
 
-// ---- SERIE ----//
-
-const storeSerie = useSerieStore();
-
-const serie = computed(() => {
-  return storeSerie.serie;
-});
-
-onBeforeMount(() => {
-  storeSerie.fetchSerie();
-});
-
 // *********** //
 
 const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
@@ -57,7 +45,6 @@ const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
           <div>
             <search />
             <moviesIcon />
-            <seriesIcon />
             <about />
           </div>
         </nav>
@@ -71,7 +58,6 @@ const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
           class="fixed z-30 bottom-0 right-0 w-full h-[55%] pl-[120px] overflow-y-auto"
         >
           <moviesCarousel class="pb-14 pt-14" v-bind:movie="movie" />
-          <seriesCarousel class="pb-14" v-bind:serie="serie" />
         </div>
       </div>
     </div>

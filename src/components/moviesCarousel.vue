@@ -9,7 +9,7 @@ const storeMovie = useMovieStore();
 const { movie, showFullVideo } = storeToRefs(storeMovie);
 
 const props = defineProps({ movie: Object });
-
+console.log(props);
 const { movies } = toRefs(props);
 
 let currentSlide = ref(0);
@@ -31,7 +31,7 @@ const fullScreenVideo = (index) => {
     <Carousel
       ref="carousel"
       v-model="currentSlide"
-      :items-to-show="8"
+      :items-to-show="1"
       :items-to-scroll="1"
       :wrap-around="true"
       :transition="500"
