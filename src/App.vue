@@ -4,13 +4,10 @@ import { storeToRefs } from "pinia";
 
 import moviesIcon from "./components/moviesIcon.vue";
 import search from "./components/searchBar.vue";
-import seriesIcon from "./components/seriesIcon.vue";
 import about from "./components/about.vue";
-import seriesCarousel from "./components/seriesCarousel.vue";
 import moviesCarousel from "./components/moviesCarousel.vue";
 
 import { useMovieStore } from "./stores/movie";
-import { useSerieStore } from "./stores/serie";
 
 // ---- MOVIE ----//
 
@@ -26,7 +23,7 @@ onBeforeMount(() => {
 
 // *********** //
 
-const { showFullVideo } = storeToRefs(storeMovie, storeSerie);
+const { showFullVideo } = storeToRefs(storeMovie);
 </script>
 
 <template>
